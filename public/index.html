@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corardei - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">Corardei</a>
+        <ul class="nav-links">
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/productos">Productos</a></li>
+            <li><a href="/acerca-de">Acerca de nosotros</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar...">
+            <button onclick="buscar()">🔍</button>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Bienvenido a Corardei</h1>
+        <p class="subtitle">TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-</p>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>¿Cómo se reza un rosario?</h3>
+                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
+            </div>
+            <div class="card">
+                <h3>Historia del Rosario</h3>
+                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Lógica para la barra de búsqueda conectada a nuestra API
+        function buscar() {
+            const query = document.getElementById('searchInput').value;
+            if(!query) return;
+            
+            // Hacemos una petición a nuestro propio servidor Node.js
+            fetch(`/api/buscar?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.mensaje);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Permitir buscar presionando "Enter"
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') buscar();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corardei - Productos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">Corardei</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/productos" class="active">Productos</a></li>
+            <li><a href="/acerca-de">Acerca de nosotros</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar productos...">
+            <button onclick="buscar()">🔍</button>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Nuestros Productos</h1>
+        <p class="subtitle">Descubre nuestro catálogo.</p>
+        
+        <div class="card-grid">
+            <!-- Producto 1 -->
+            <div class="card">
+                <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Rosario" alt="Rosario Francisco" class="product-image">
+                <h3>Rosario Francisco</h3>
+                <p>Con cuentas plateadas, de madera y perladas.</p>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="card">
+                <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Rosario" alt="Rosario 2" class="product-image">
+                <h3>Rosario _</h3>
+                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="card">
+                <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Rosario" alt="Rosario 3" class="product-image">
+                <h3>Rosario _</h3>
+                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Lógica de búsqueda
+        function buscar() {
+            const query = document.getElementById('searchInput').value;
+            if(!query) return;
+            fetch(`/api/buscar?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => alert(data.mensaje))
+                .catch(error => console.error('Error:', error));
+        }
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') buscar();
+        });
+    </script>
+</body>
+</html>

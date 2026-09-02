@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corardei - Acerca de nosotros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">Corardei</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/productos">Productos</a></li>
+            <li><a href="/acerca-de" class="active">Acerca de nosotros</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar en Corardei...">
+            <button onclick="buscar()">🔍</button>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Acerca de Corardei</h1>
+        <p class="subtitle">¡Conocecenos!</p>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>Nuestra Misión</h3>
+                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
+            </div>
+            <div class="card">
+                <h3>Nuestra motivación</h3>
+                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function buscar() {
+            const query = document.getElementById('searchInput').value;
+            if(!query) return;
+            fetch(`/api/buscar?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => alert(data.mensaje))
+                .catch(error => console.error('Error:', error));
+        }
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') buscar();
+        });
+    </script>
+</body>
+</html>

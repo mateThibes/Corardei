@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600&display=swap');
+
+:root {
+    --bg-hueso: #F9F6EE; /* Color principal de fondo (hueso) */
+    --bordo-principal: #38030e; /* Color predominante (bordó) */
+    --bordo-oscuro: #5c101f;
+    --bordo-claro: #a32c45;
+    --texto-oscuro: #3A2E2B; /* Para leer cómodamente sobre hueso */
+    --texto-claro: #F9F6EE; /* Para leer sobre bordó */
+    --card-bg: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-hueso);
+    color: var(--texto-oscuro);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Nunito da un toque muy amigable y suave a los textos */
+    font-family: 'Nunito', sans-serif; 
+}
+
+/* Tipografía para Títulos (Elegante y clásica) */
+h1, h2, h3, .logo {
+    font-family: 'Lora', serif;
+    color: var(--bordo-principal);
+}
+
+/* Navbar Bordó */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: var(--bordo-principal);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--texto-claro);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--texto-claro);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background-color: var(--texto-claro);
+    color: var(--bordo-principal);
+}
+
+/* Barra de Búsqueda Amigable */
+.search-container {
+    display: flex;
+    align-items: center;
+    background: var(--bg-hueso);
+    border-radius: 25px;
+    padding: 0.2rem 0.5rem 0.2rem 1.2rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-container input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--texto-oscuro);
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    width: 220px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.search-container input::placeholder {
+    color: #999;
+}
+
+.search-container button {
+    background: var(--bordo-principal);
+    border: none;
+    color: var(--texto-claro);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.search-container button:hover {
+    background: var(--bordo-oscuro);
+}
+
+/* Contenido Principal */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 5%;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #554845;
+    max-width: 700px;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+/* Tarjetas (Estilo cálido y suave) */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-top: 5px solid var(--bordo-principal);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(138, 28, 49, 0.08);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(138, 28, 49, 0.15);
+}
+
+.card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--bordo-principal);
+}
+
+.card p {
+    color: var(--texto-oscuro);
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+/* Imagen del Producto */
+.product-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

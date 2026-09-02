@@ -52,4 +52,4 @@ Sigue estos pasos para correr el servidor en tu computadora:
 - `index.js`: Archivo principal del servidor (backend).
 - `public/`: Contiene todo el frontend que ve el usuario (archivos `.html`, estilos, imágenes).
 - `package.json`: Configuración del proyecto y sus dependencias (como `express`).
-- `explicacion_codigo.md`: Documento de apoyo para entender paso a paso cómo está construido el servidor.
+- `explicacion_codigo.md`: Documento de apoyo para entender paso a paso cómo está construido el servidor

@@ -25,15 +25,49 @@
         <p class="subtitle">TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-</p>
         
         <div class="card-grid">
-            <div class="card">
-                <h3>¿Cómo se reza un rosario?</h3>
-                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
-            </div>
-            <div class="card">
-                <h3>Historia del Rosario</h3>
-                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
+            <div class="card" style="padding: 0; border: none; box-shadow: none; overflow: hidden; background: transparent; text-align: left;">
+                <div class="rosary-container" style="width: 100%; max-width: 100%; margin: 0 auto; border-top: 5px solid var(--bordo-principal);">
+                    <header class="rosary-header">
+                    <h1 style="font-size: 1.5rem; margin-bottom: 0;">Santo Rosario</h1>
+                    <div class="day-selector-group">
+                        <label for="daySelect">Misterios de:</label>
+                        <select id="daySelect" aria-label="Seleccionar día de la semana"></select>
+                    </div>
+                    </header>
+                    <section class="status-bar" aria-live="polite">
+                    <div class="status-badge" id="mysteryBadge">Cargando...</div>
+                    <div class="step-indicator" id="stepCounter">Paso 1</div>
+                    </section>
+                    <div class="progress-track">
+                    <div class="progress-fill" id="progressBar"></div>
+                    </div>
+                    
+                    <div class="rosary-visual-wrapper">
+                      <svg id="rosarySvg" viewBox="0 0 400 450" class="rosary-svg"></svg>
+                    </div>
+
+                    <article class="prayer-card">
+                    <h2 class="prayer-title" id="prayerTitle">Título de la Oración</h2>
+                    <p class="prayer-instruction" id="prayerInstruction">Instrucción o meditación</p>
+                    <div class="prayer-body" id="prayerText">Texto de la oración...</div>
+                    </article>
+                    <footer class="rosary-controls">
+                    <button id="btnPrev" class="btn btn-secondary" disabled>← Anterior</button>
+                    <button id="btnReset" class="btn btn-text">Reiniciar</button>
+                    <button id="btnNext" class="btn btn-primary">Siguiente →</button>
+                    </footer>
+                </div>
             </div>
         </div>
+        <div class="card" style="margin-top: 4rem; width: 100%; max-width: 1100px;">
+                <h3>Historia del Rosario</h3>
+                <p>El rosario cristiano nació en los monasterios medievales como una adaptación práctica de la liturgia. Mientras los monjes recitaban diariamente los 150 salmos bíblicos, la mayoría de los fieles laicos, analfabetos y sin dominio del latín, no podían seguir el texto. Para incluir a toda la comunidad, se adoptó la costumbre de sustituir cada salmo por una oración repetitiva: primero 150 Padrenuestros y más tarde 150 Avemarías. Para no perder la cuenta, se utilizaban cuerdas con nudos conocidas como paternosters, y la devoción comenzó a llamarse «rosario» a partir del latín rosarium (corona o jardín de rosas), entendiendo cada rezo como una flor espiritual ofrecida a María.
+
+                    La gran difusión popular llegó entre los siglos XIII y XV gracias a la Orden de Predicadores. La tradición sitúa a Santo Domingo de Guzmán como su promotor inicial frente a las herejías del sur de Francia, pero fueron dominicos y cartujos posteriores quienes fijaron su mecánica actual. Hacia el siglo XV, el cartujo Domingo de Prusia y el dominico Alano de la Rupe ordenaron las oraciones en decenas encabezadas por un Padrenuestro, ligando cada bloque a la meditación de un pasaje concreto de los Evangelios, lo que convirtió el conteo mecánico en un método de contemplación profunda.
+
+                    La fórmula quedó sellada formalmente en 1569, cuando el papa Pío V estandarizó canónicamente el rezo con quince misterios divididos en Gozosos, Dolorosos y Gloriosos. Apenas dos años después, tras la victoria naval de la Liga Santa en Lepanto, atribuida a la oración comunitaria del rosario, la Iglesia fijó el 7 de octubre como su fiesta litúrgica oficial. La estructura se mantuvo intacta durante siglos hasta el año 2002, cuando Juan Pablo II introdujo los Misterios Luminosos para contemplar la vida pública de Jesús, completando los veinte misterios que articulan hoy esta síntesis devocional.
+                </p>
+            </div>
     </main>
 
     <script>
@@ -56,5 +90,6 @@
             if (e.key === 'Enter') buscar();
         });
     </script>
+    <script src="rosary.js"></script>
 </body>
 </html>

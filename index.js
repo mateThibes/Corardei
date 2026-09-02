@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path'); // Módulo de Node para manejar rutas de archivos
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -35,6 +35,6 @@ app.get('/api/buscar', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });

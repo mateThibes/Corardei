@@ -1,7 +1,7 @@
 # fly.toml app configuration file
 app = "coradei" # <-- Cambia "coradei" por el nombre exacto de tu app en Fly.io (si le pusiste otro)
 
-primary_region = "eze" # Buenos Aires (puedes cambiarlo a "gru" para Sao Paulo, "mia" para Miami, etc.)
+primary_region = "gru" # Sao Paulo, la región más cercana disponible (EZE fue desactivada por Fly)
 
 [build]
   dockerfile = "Dockerfile"

@@ -30,6 +30,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* Prevenir scroll horizontal en móviles */
     /* Nunito da un toque muy amigable y suave a los textos */
     font-family: 'Nunito', sans-serif; 
 }
@@ -147,47 +148,140 @@ main {
 }
 
 /* =============================================
-   RESPONSIVE NAVBAR & CAROUSEL FIXES
+   RESPONSIVE — MOBILE FIXES
    ============================================= */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+    /* --- Nav compacto --- */
     nav {
         flex-direction: column;
-        padding: 1rem;
-        gap: 0.8rem;
+        padding: 0.8rem 1rem;
+        gap: 0.5rem;
     }
 
     .logo-img {
-        height: 45px; /* Reducir tamaño en móviles */
+        height: 40px;
     }
 
     .logo {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        gap: 0.5rem;
     }
 
     .nav-links {
-        gap: 0.8rem;
+        gap: 0.5rem;
         flex-wrap: wrap;
         justify-content: center;
     }
 
     .nav-links a {
-        padding: 0.4rem 0.8rem;
-        font-size: 1rem;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.85rem;
     }
 
     .search-container {
         width: 100%;
-        max-width: 400px;
+        max-width: 320px;
         margin: 0 auto;
     }
 
     .search-container input {
         width: 100%;
+        font-size: 0.9rem;
     }
 
-    /* Ocultar flechas exteriores del carrusel en móviles para evitar superposición (funciona con swipe) */
-    .product-section > .carousel > .carousel-arrow {
-        display: none;
+    /* --- Desactivar snap scroll en móviles (el contenido es más largo que la pantalla) --- */
+    html.snap-scroll-page {
+        scroll-snap-type: none;
+    }
+
+    /* --- Secciones: auto-height en vez de 100vh para evitar overflow --- */
+    .product-section,
+    .about-section {
+        min-height: auto;
+        padding: 3rem 1rem 2rem;
+    }
+
+    .snap-scroll-page .home-hero,
+    .snap-scroll-page .animated-section,
+    .snap-scroll-page .product-section,
+    .snap-scroll-page .about-section {
+        min-height: auto;
+        scroll-snap-align: none;
+        padding-top: 2rem;
+    }
+
+    /* --- Carruseles: ancho completo y sin desborde --- */
+    .carousel {
+        max-width: 100%;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .carousel-slide {
+        min-width: 100%;
+        padding: 0.5rem;
+    }
+
+    .carousel-slide .card {
+        max-width: 100%;
+    }
+
+    /* --- Flechas más pequeñas en móviles --- */
+    .carousel-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .carousel-prev { left: 4px; }
+    .carousel-next { right: 4px; }
+
+    /* --- Product image carousel más pequeño --- */
+    .product-image-carousel {
+        aspect-ratio: 4 / 3;
+    }
+
+    .product-image-carousel .carousel-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    /* --- Títulos reducidos --- */
+    h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    /* --- Rosario y historia grids ya colapsan (max-width: 900px) --- */
+
+    /* --- Card grid: una columna --- */
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    /* --- Instagram button más pequeño --- */
+    .instagram-float {
+        width: 48px;
+        height: 48px;
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .instagram-float svg {
+        width: 24px;
+        height: 24px;
     }
 }
 

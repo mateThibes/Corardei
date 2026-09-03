@@ -199,6 +199,7 @@ main {
     .about-section {
         min-height: auto;
         padding: 3rem 1rem 2rem;
+        align-items: stretch; /* Forzar hijos a ancho completo en móvil */
     }
 
     .snap-scroll-page .home-hero,
@@ -212,18 +213,26 @@ main {
 
     /* --- Carruseles: ancho completo y sin desborde --- */
     .carousel {
-        max-width: 100%;
+        max-width: 100% !important;
+        width: 100% !important;
         overflow: hidden;
         margin: 0 auto;
     }
 
+    .carousel-viewport {
+        width: 100% !important;
+    }
+
     .carousel-slide {
         min-width: 100%;
+        width: 100%;
         padding: 0.5rem;
+        box-sizing: border-box;
     }
 
     .carousel-slide .card {
         max-width: 100%;
+        box-sizing: border-box;
     }
 
     /* --- Flechas más pequeñas en móviles --- */
@@ -511,9 +520,11 @@ h1 {
     max-width: 1100px;
     overflow: hidden;
     border-radius: var(--radius);
+    margin: 0 auto; /* Centrar carrusel */
 }
 
 .carousel-viewport {
+    width: 100%;
     overflow: hidden;
     border-radius: var(--radius);
 }

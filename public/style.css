@@ -222,14 +222,14 @@ main {
         overflow: visible;
     }
 
-    .product-section > .carousel > .carousel-track {
+    .product-section > .carousel > .carousel-viewport > .carousel-track {
         display: flex;
         flex-direction: column; /* Apilar productos verticalmente */
         transform: none !important; /* Desactivar el slide horizontal */
         gap: 2rem;
     }
 
-    .product-section > .carousel > .carousel-track > .carousel-slide {
+    .product-section > .carousel > .carousel-viewport > .carousel-track > .carousel-slide {
         min-width: 100%;
         width: 100%;
         opacity: 1 !important;
@@ -239,7 +239,7 @@ main {
 
     /* Ocultar flechas y dots del carrusel EXTERIOR en móvil */
     .product-section > .carousel > .carousel-arrow,
-    .product-section > .carousel > .carousel-dots {
+    .product-section > .carousel .carousel-dots {
         display: none;
     }
 

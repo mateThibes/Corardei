@@ -146,6 +146,51 @@ main {
     animation: fadeIn 0.8s ease-out;
 }
 
+/* =============================================
+   RESPONSIVE NAVBAR & CAROUSEL FIXES
+   ============================================= */
+@media (max-width: 900px) {
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+
+    .logo-img {
+        height: 45px; /* Reducir tamaño en móviles */
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .nav-links {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        padding: 0.4rem 0.8rem;
+        font-size: 1rem;
+    }
+
+    .search-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .search-container input {
+        width: 100%;
+    }
+
+    /* Ocultar flechas exteriores del carrusel en móviles para evitar superposición (funciona con swipe) */
+    .product-section > .carousel > .carousel-arrow {
+        display: none;
+    }
+}
+
 main.home-main {
     padding: 0;
     align-items: stretch;

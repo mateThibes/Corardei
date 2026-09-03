@@ -211,28 +211,64 @@ main {
         padding-top: 2rem;
     }
 
-    /* --- Carruseles: ancho completo y sin desborde --- */
-    .carousel {
-        max-width: 100% !important;
-        width: 100% !important;
-        overflow: hidden;
-        margin: 0 auto;
+    /* --- Carruseles de productos: convertir a lista vertical en móvil --- */
+    /* El carrusel EXTERIOR de productos se vuelve vertical */
+    .product-section > .carousel {
+        max-width: 100%;
+        overflow: visible; /* Permitir que se muestre todo */
     }
 
-    .carousel-viewport {
-        width: 100% !important;
+    .product-section > .carousel > .carousel-viewport {
+        overflow: visible;
     }
 
-    .carousel-slide {
+    .product-section > .carousel > .carousel-track {
+        display: flex;
+        flex-direction: column; /* Apilar productos verticalmente */
+        transform: none !important; /* Desactivar el slide horizontal */
+        gap: 2rem;
+    }
+
+    .product-section > .carousel > .carousel-track > .carousel-slide {
         min-width: 100%;
         width: 100%;
-        padding: 0.5rem;
-        box-sizing: border-box;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        padding: 0;
+    }
+
+    /* Ocultar flechas y dots del carrusel EXTERIOR en móvil */
+    .product-section > .carousel > .carousel-arrow,
+    .product-section > .carousel > .carousel-dots {
+        display: none;
     }
 
     .carousel-slide .card {
         max-width: 100%;
         box-sizing: border-box;
+    }
+
+    /* --- El carrusel INTERIOR de fotos del producto sigue funcionando normal --- */
+    .product-image-carousel {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .product-image-carousel .carousel-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    /* --- Carruseles normales (stickers etc.) se adaptan bien --- */
+    .carousel {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .carousel-viewport {
+        width: 100%;
     }
 
     /* --- Flechas más pequeñas en móviles --- */
@@ -244,17 +280,6 @@ main {
 
     .carousel-prev { left: 4px; }
     .carousel-next { right: 4px; }
-
-    /* --- Product image carousel más pequeño --- */
-    .product-image-carousel {
-        aspect-ratio: 4 / 3;
-    }
-
-    .product-image-carousel .carousel-arrow {
-        width: 28px;
-        height: 28px;
-        font-size: 0.8rem;
-    }
 
     /* --- Títulos reducidos --- */
     h1 {

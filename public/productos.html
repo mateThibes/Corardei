@@ -8,9 +8,9 @@
 </head>
 <body>
     <nav>
-        <a href="/" class="logo">Corardei</a>
+        <a href="/home" class="logo">Corardei</a>
         <ul class="nav-links">
-            <li><a href="/">Home</a></li>
+            <li><a href="/home">Home</a></li>
             <li><a href="/productos" class="active">Productos</a></li>
             <li><a href="/acerca-de">Acerca de nosotros</a></li>
         </ul>
@@ -22,57 +22,82 @@
 
     <main>
         <h1>Nuestros Productos</h1>
-        <p class="subtitle">Descubre nuestro catálogo.</p>
+        <p class="subtitle">Cada detalle puede acercar corazones a Dios.</p>
         
-        <h2 style="font-size: 2.5rem; margin: 1rem 0 2rem 0;">Rosarios</h2>
-        <div class="card-grid" style="margin-bottom: 4rem;">
-            <!-- Producto 1 -->
-            <div class="card">
-                <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Rosario" alt="Rosario Francisco" class="product-image">
-                <h3>Rosario Francisco</h3>
-                <p>Con cuentas plateadas, de madera y perladas.</p>
+        <!-- ROSARIOS — Carousel con efecto Slide -->
+        <h2 class="section-title" data-animate="fade-up">Rosarios</h2>
+        <div class="carousel" data-carousel-mode="slide" data-animate="fade-up" data-animate-delay="2" style="margin-bottom: 4rem;">
+            <button class="carousel-arrow carousel-prev" aria-label="Anterior">❮</button>
+            <div class="carousel-viewport">
+                <div class="carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Rosario" alt="Rosario Francisco" class="product-image">
+                            <h3>Rosario Francisco</h3>
+                            <p>Con cuentas plateadas, de madera y perladas.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Rosario" alt="Rosario San Benito" class="product-image">
+                            <h3>Rosario San Benito</h3>
+                            <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Rosario" alt="Rosario _" class="product-image">
+                            <h3>Rosario _</h3>
+                            <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Producto 2 -->
-            <div class="card">
-                <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Rosario" alt="Rosario 2" class="product-image">
-                <h3>Rosario San Benito</h3>
-                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
-            </div>
-
-            <!-- Producto 3 -->
-            <div class="card">
-                <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Rosario" alt="Rosario 3" class="product-image">
-                <h3>Rosario _</h3>
-                <p>TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-TEXTO-.</p>
-            </div>
+            <button class="carousel-arrow carousel-next" aria-label="Siguiente">❯</button>
+            <div class="carousel-dots"></div>
         </div>
 
-        <h2 style="font-size: 2.5rem; margin: 1rem 0 2rem 0;">Stickers</h2>
-        <div class="card-grid">
-            <!-- Sticker 1 -->
-            <div class="card">
-                <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Sticker" alt="Pack de Stickers 1" class="product-image">
-                <h3>Pack de Stickers Surtido</h3>
-                <p>10 Stickers por $2500</p>
-                <p>5 Stickers por $1500</p>
+        <!-- STICKERS — Carousel con efecto Fade -->
+        <h2 class="section-title" data-animate="fade-up">Stickers</h2>
+        <div class="carousel" data-carousel-mode="fade" data-animate="fade-up" data-animate-delay="2">
+            <button class="carousel-arrow carousel-prev" aria-label="Anterior">❮</button>
+            <div class="carousel-viewport">
+                <div class="carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Sticker" alt="Pack de Stickers Surtido" class="product-image">
+                            <h3>Pack de Stickers Surtido</h3>
+                            <p>10 Stickers por $2500</p>
+                            <p>5 Stickers por $1500</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Sticker" alt="Pack de Stickers a Elección" class="product-image">
+                            <h3>Pack de Stickers a Elección</h3>
+                            <p>10 Stickers por $3500</p>
+                            <p>5 Stickers por $2500</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Sticker" alt="Pack de Stickers Personalizados" class="product-image">
+                            <h3>Pack de Stickers Personalizados</h3>
+                            <p>10 Stickers por $4500</p>
+                            <p>5 Stickers por $3500</p>
+                            <p>*Mandanos que Stickers querés y nosotras los hacemos*</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Sticker 2 -->
-            <div class="card">
-                <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Sticker" alt="Pack de Stickers 2" class="product-image">
-                <h3>Pack de Stickers a Elección</h3>
-                <p>10 Stickers por $3500</p>
-                <p>5 Stickers por $2500</p>
-            </div>
-
-            <div class="card">
-                <img src="https://placehold.co/300x300/38030e/F9F6EE?text=Foto+Sticker" alt="Pack de Stickers 1" class="product-image">
-                <h3>Pack de Stickers Personalizados</h3>
-                <p>10 Stickers por $4500</p>
-                <p>5 Stickers por $3500</p>
-                <p>*Mandanos que Stickers querés y nosotras los hacemos*</p>
-            </div>
+            <button class="carousel-arrow carousel-next" aria-label="Siguiente">❯</button>
+            <div class="carousel-dots"></div>
         </div>
     </main>
 
@@ -90,5 +115,6 @@
             if (e.key === 'Enter') buscar();
         });
     </script>
+    <script src="animations.js"></script>
 </body>
 </html>

@@ -7,10 +7,15 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Configuramos Express para que pueda servir archivos estáticos (CSS, imágenes)
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
-// 1. Ruta "Home" (Página principal)
+// 1. Ruta principal - Redirige a productos por defecto
 app.get('/', (req, res) => {
+    res.redirect('/productos');
+});
+
+// Ruta "Home" explícita
+app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 

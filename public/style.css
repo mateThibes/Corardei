@@ -3,11 +3,19 @@
 :root {
     --bg-hueso: #F9F6EE; /* Color principal de fondo (hueso) */
     --bordo-principal: #38030e; /* Color predominante (bordó) */
-    --bordo-oscuro: #5c101f;
+    --bordo-oscuro: #b83851;
     --bordo-claro: #a32c45;
     --texto-oscuro: #3A2E2B; /* Para leer cómodamente sobre hueso */
     --texto-claro: #F9F6EE; /* Para leer sobre bordó */
     --card-bg: #FFFFFF;
+    --primary: var(--bordo-claro);
+    --primary-hover: var(--bordo-oscuro);
+    --bg-card-rosary: #FFFFFF;
+    --border-color: #e2e8f0;
+    --text-muted: #64748b;
+    --radius: 12px;
+    --gold-accent: #c9a94e;
+    --gold-light: #e8d48b;
 }
 
 * {
@@ -38,11 +46,13 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    background-color: var(--bordo-principal);
+    background-color: rgba(69, 14, 25, 0.9);
+    backdrop-filter: blur(12px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .logo {
@@ -120,9 +130,68 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4rem 5%;
+    padding: 7rem 5% 4rem; /* Ajustado por el nav fixed */
     text-align: center;
     animation: fadeIn 0.8s ease-out;
+}
+
+main.home-main {
+    padding: 0;
+    align-items: stretch;
+}
+
+/* =============================================
+   APPLE STYLE SNAP SCROLLING
+   ============================================= */
+html.snap-scroll-page {
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+}
+
+.snap-scroll-page .home-hero,
+.snap-scroll-page .animated-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 80px; /* Compensa el nav fixed */
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+}
+
+.home-hero {
+    padding: 0 5%;
+    text-align: center;
+    background-color: var(--bg-hueso);
+}
+
+/* =============================================
+   FULL WIDTH ANIMATED SECTIONS
+   ============================================= */
+.animated-section {
+    width: 100%;
+    padding: 0 5%;
+}
+
+.section-rosary {
+    background-color: #fdf8f0;
+}
+
+.section-history {
+    background-color: #f5e6d3;
+}
+
+.content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+}
+
+.align-right {
+    justify-content: flex-end;
 }
 
 h1 {
@@ -148,7 +217,9 @@ h1 {
 }
 
 .card {
-    background: var(--card-bg);
+    background: linear-gradient(135deg, #ffffff, #faecd9, #ffffff, #f7dfdf);
+    background-size: 300% 300%;
+    animation: bg-pan 14s ease infinite;
     border-top: 5px solid var(--bordo-principal);
     border-radius: 12px;
     padding: 2.5rem 2rem;
@@ -160,6 +231,7 @@ h1 {
 .card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 25px rgba(138, 28, 49, 0.15);
+    animation: bg-pan 4s ease infinite;
 }
 
 .card h3 {
@@ -196,211 +268,481 @@ h1 {
     }
 }
 
-/* --- CSS Guia Rosario --- */
-:root {
-  --primary: var(--bordo-claro); 
-  --primary-hover: var(--bordo-oscuro);
-  --bg-card-rosary: #FFFFFF;
-  --border-color: #e2e8f0;
-  --text-muted: #64748b;
-  --radius: 12px;
+/* =============================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ============================================= */
+[data-animate] {
+    opacity: 0;
+    transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+    will-change: opacity, transform;
 }
 
+[data-animate="fade-up"] {
+    transform: translateY(50px);
+}
+
+[data-animate="fade-in-left"] {
+    transform: translateX(-60px);
+}
+
+[data-animate="fade-in-right"] {
+    transform: translateX(60px);
+}
+
+[data-animate="scale-in"] {
+    transform: scale(0.85);
+}
+
+[data-animate="blur-in"] {
+    filter: blur(8px);
+    transform: translateY(20px);
+}
+
+/* When visible */
+[data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    filter: blur(0);
+}
+
+/* Stagger children delay */
+[data-animate-delay="1"] { transition-delay: 0.1s; }
+[data-animate-delay="2"] { transition-delay: 0.2s; }
+[data-animate-delay="3"] { transition-delay: 0.3s; }
+[data-animate-delay="4"] { transition-delay: 0.4s; }
+[data-animate-delay="5"] { transition-delay: 0.5s; }
+
+/* =============================================
+   CAROUSEL
+   ============================================= */
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    overflow: hidden;
+    border-radius: var(--radius);
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    border-radius: var(--radius);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-track--fade {
+    display: block;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    padding: 1rem;
+}
+
+.carousel-slide .card {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* Arrow buttons */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: var(--bordo-principal);
+    color: var(--texto-claro);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(56, 3, 14, 0.3);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.carousel-arrow:hover {
+    background: var(--bordo-oscuro);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+
+/* Dots */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--bordo-principal);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    padding: 0;
+}
+
+.carousel-dot:hover {
+    transform: scale(1.3);
+}
+
+.carousel-dot.active {
+    background: var(--bordo-principal);
+}
+
+/* Section titles for productos */
+.section-title {
+    font-size: 2.5rem;
+    margin: 1rem 0 2rem 0;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--bordo-claro), var(--gold-accent));
+    border-radius: 2px;
+}
+
+/* =============================================
+   ROSARY INTERACTIVE — VISUAL UPGRADE
+   ============================================= */
 .rosary-container {
-  background-color: var(--bg-card-rosary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  width: 100%;
-  max-width: 620px;
-  overflow: hidden;
-  padding: 1.5rem;
+    width: 100%;
+    max-width: none;
+    overflow: hidden;
+    padding: 2rem;
+    transition: all 0.3s ease;
 }
 
 .rosary-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.25rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .day-selector-group select {
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-card-rosary);
-  color: var(--texto-oscuro);
-  font-size: 0.875rem;
-  cursor: pointer;
-  font-family: 'Nunito', sans-serif;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card-rosary);
+    color: var(--texto-oscuro);
+    font-size: 0.875rem;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.day-selector-group select:focus {
+    border-color: var(--bordo-claro);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(163, 44, 69, 0.15);
 }
 
 .status-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
 }
 
 .status-badge {
-  background-color: var(--border-color);
-  color: var(--texto-oscuro);
-  padding: 0.2rem 0.6rem;
-  border-radius: 9999px;
-  font-weight: 600;
+    background: linear-gradient(135deg, var(--bordo-principal), var(--bordo-claro));
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
 }
 
 .step-indicator {
-  color: var(--text-muted);
+    color: var(--text-muted);
+    font-weight: 600;
 }
 
 .progress-track {
-  width: 100%;
-  height: 6px;
-  background-color: var(--border-color);
-  border-radius: 9999px;
-  overflow: hidden;
-  margin-bottom: 1.5rem;
+    width: 100%;
+    height: 6px;
+    background-color: var(--border-color);
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
 }
 
 .progress-fill {
-  height: 100%;
-  width: 0%;
-  background-color: var(--primary);
-  transition: width 0.25s ease;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--bordo-principal), var(--bordo-claro), var(--gold-accent));
+    transition: width 0.25s ease;
+    border-radius: 9999px;
 }
 
 .prayer-card {
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  padding: 1rem 0;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(249, 246, 238, 0.5);
+    border-radius: var(--radius);
+    border: 1px solid rgba(226, 232, 240, 0.5);
 }
 
 .prayer-title {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
 }
 
 .prayer-instruction {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 1.25rem;
-  font-style: italic;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    font-style: italic;
 }
 
 .prayer-body {
-  font-size: 1rem;
-  line-height: 1.6;
-  white-space: pre-line;
+    font-size: 1rem;
+    line-height: 1.6;
+    white-space: pre-line;
 }
 
 .rosary-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.5rem;
-  border-top: 1px solid var(--border-color);
-  padding-top: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.25rem;
 }
 
 .btn {
-  cursor: pointer;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: none;
-  transition: background 0.2s ease;
-  font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    font-family: 'Nunito', sans-serif;
 }
 
 .btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .btn-primary {
-  background-color: var(--primary);
-  color: #fff;
+    background: linear-gradient(135deg, var(--bordo-claro), var(--bordo-principal));
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(163, 44, 69, 0.3);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: var(--primary-hover);
+    background: linear-gradient(135deg, var(--bordo-principal), var(--bordo-oscuro));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(163, 44, 69, 0.4);
 }
 
 .btn-secondary {
-  background-color: var(--border-color);
-  color: var(--texto-oscuro);
+    background-color: var(--border-color);
+    color: var(--texto-oscuro);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: #cbd5e1;
+    transform: translateY(-1px);
 }
 
 .btn-text {
-  background: transparent;
-  color: var(--text-muted);
+    background: transparent;
+    color: var(--text-muted);
 }
 
 .btn-text:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* --- SVG Rosary Visual --- */
 .rosary-visual-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
 }
 
 .rosary-svg {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  overflow: visible;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    overflow: visible;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
 
-/* Estilos de las cuentas */
+/* Estilos de las cuentas — paleta cálida */
 .bead {
-  fill: var(--border-color);
-  stroke: var(--text-muted);
-  stroke-width: 1.5;
-  cursor: pointer;
-  transition: transform 0.15s ease, fill 0.2s ease;
+    fill: #f1e8d8;
+    stroke: #c9a94e;
+    stroke-width: 1.5;
+    cursor: pointer;
+    transition: transform 0.15s ease, fill 0.2s ease, filter 0.2s ease;
 }
 
 .bead:hover {
-  fill: #93c5fd;
+    fill: var(--gold-light);
+    filter: drop-shadow(0 0 4px rgba(201, 169, 78, 0.5));
 }
 
 .bead.large {
-  stroke-width: 2;
+    stroke-width: 2;
+    fill: #ede0c8;
+    stroke: #b8942e;
 }
 
 .bead.active {
-  fill: var(--primary);
-  stroke: #1e3a8a;
+    fill: var(--bordo-claro);
+    stroke: var(--bordo-principal);
+    filter: drop-shadow(0 0 8px rgba(163, 44, 69, 0.6));
 }
 
 .bead.completed {
-  fill: #3b82f6;
-  opacity: 0.7;
+    fill: var(--bordo-principal);
+    opacity: 0.55;
+    stroke: var(--bordo-oscuro);
 }
 
 .bead-cross {
-  cursor: pointer;
-  fill: var(--border-color);
-  stroke: var(--text-muted);
-  stroke-width: 1.5;
+    cursor: pointer;
+    fill: var(--gold-light);
+    stroke: var(--gold-accent);
+    stroke-width: 1.5;
+    transition: fill 0.2s ease, filter 0.2s ease;
+}
+
+.bead-cross:hover {
+    fill: var(--gold-accent);
 }
 
 .bead-cross.active {
-  fill: var(--primary);
+    fill: var(--bordo-claro);
+    stroke: var(--bordo-principal);
+    filter: drop-shadow(0 0 8px rgba(163, 44, 69, 0.6));
 }
 
-/* --- Optimización para Móviles (Responsive) --- */
+.bead-cross.completed {
+    fill: var(--bordo-principal);
+    opacity: 0.55;
+}
+
+/* =============================================
+   HISTORY SECTION — ENHANCED
+   ============================================= */
+.history-content {
+    width: 100%;
+    max-width: none;
+    padding: 2rem 3rem; /* Reducido un poco para ganar espacio vertical */
+    text-align: right; /* Alineado a la derecha como se pidió */
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 900px) {
+    .history-content {
+        text-align: left; /* Restaurar alineación en móviles */
+        padding: 1.5rem;
+    }
+}
+
+.history-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.history-content h3::before {
+    content: '📿';
+    font-size: 1.5rem;
+}
+
+.history-content p {
+    color: var(--texto-oscuro);
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+}
+
+.history-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* =============================================
+   ABOUT PAGE — QUOTE
+   ============================================= */
+.closing-quote {
+    font-size: 1.3rem;
+    color: var(--bordo-claro);
+    max-width: 700px;
+    margin-top: 3rem;
+    line-height: 1.6;
+    font-style: italic;
+    position: relative;
+    padding: 1.5rem 2rem;
+}
+
+.closing-quote::before {
+    content: '❝';
+    font-size: 3rem;
+    position: absolute;
+    top: -0.3rem;
+    left: -0.5rem;
+    color: var(--bordo-claro);
+    opacity: 0.3;
+}
+
+/* =============================================
+   BACKGROUND GRADIENT ANIMATION
+   ============================================= */
+@keyframes bg-pan {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
 @media (max-width: 768px) {
     /* Navbar */
     nav {
@@ -481,4 +823,103 @@ h1 {
         min-width: 30%;
         text-align: center;
     }
+
+    /* Carousel */
+    .carousel-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+    }
+
+    .carousel-prev { left: 6px; }
+    .carousel-next { right: 6px; }
+
+    /* History */
+    .history-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .history-content h3 {
+        font-size: 1.4rem;
+    }
 }
+
+/* =============================================
+   NEW LAYOUT GRIDS (ROSARY & HISTORY)
+   ============================================= */
+.rosary-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+@media (max-width: 900px) {
+    .rosary-grid { grid-template-columns: 1fr; }
+}
+
+.rosary-visual-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.rosary-interactive-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    gap: 3rem; /* Espacio entre fotos y texto */
+    align-items: center;
+    max-width: 1600px; /* Ensanchado para empujar al borde */
+    width: 100%;
+    margin: 0 auto;
+}
+@media (max-width: 900px) {
+    .history-grid { grid-template-columns: 1fr; }
+}
+
+.history-images {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    position: relative;
+}
+
+.history-img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    object-fit: cover;
+    max-height: 1000vh; /* Altura dinámica para evitar que rompa el 100vh de la pantalla */
+}
+
+.history-img-1 {
+    transform: rotate(-3deg);
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+.history-img-1:hover {
+    transform: rotate(0deg) scale(1.02);
+    z-index: 4;
+}
+
+.history-img-2 {
+    transform: rotate(3deg);
+    margin-top: -10%; /* Superposición más suave */
+    margin-left: 5%;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+.history-img-2:hover {
+    transform: rotate(0deg) scale(1.02);
+    z-index: 4;
+}
+

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="snap-scroll-page">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,10 @@
 </head>
 <body>
     <nav>
-        <a href="/home" class="logo">Corardei</a>
+        <a href="/home" class="logo">
+            <img src="images/logo_png.png" alt="Corardei Logo" class="logo-img">
+            <span class="logo-text">Corardei</span>
+        </a>
         <ul class="nav-links">
             <li><a href="/home">Home</a></li>
             <li><a href="/productos">Productos</a></li>
@@ -20,23 +23,35 @@
         </div>
     </nav>
 
-    <main>
-        <h1>Acerca de Corardei</h1>
-        <p class="subtitle">¡Conocecenos!</p>
+    <main class="home-main">
+        <section class="about-section" data-section-bg="#F9F6EE" data-animate="fade-up">
+            <h1>Acerca de Corardei</h1>
+            <p class="subtitle">¡Conocecenos!</p>
+        </section>
         
-        <div class="card-grid">
-            <div class="card" data-animate="fade-in-left">
-                <h3>Nuestra Misión</h3>
-                <p>Somos dos mejores amigas unidas por la fe y con el propósito de acercar corazones a Dios a través de pequeños detalles. Así nació Coradei, un nombre que representa lo que queremos que sea este proyecto: Un corazón que arde por Dios.</p>
+        <section class="about-section" data-section-bg="#ebd1d6" data-animate="fade-in-left">
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Nuestra Misión</h3>
+                    <p>Somos dos mejores amigas unidas por la fe y con el propósito de acercar corazones a Dios a través de pequeños detalles. Así nació Coradei, un nombre que representa lo que queremos que sea este proyecto: Un corazón que arde por Dios.</p>
+                </div>
             </div>
-            <div class="card" data-animate="fade-in-right">
-                <h3>Nuestra motivación</h3>
-                <p>Creemos que Dios puede hacerse presente en lo cotidiano, en un regalo, en una palabra, en un rosario que nos acompaña en la oración o en ese pequeño detalle que nos recuerda que no estamos solos.
-                    Por eso creamos cada producto con mucho amor y dedicación, buscando que detrás de cada uno haya algo más que un objeto: un pedacito de fe, una invitación a rezar y una forma de acercarnos un poquito mas a Él.
-                </p>
+        </section>
+
+        <section class="about-section" data-section-bg="#e4d5be" data-animate="fade-in-right">
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Nuestra motivación</h3>
+                    <p>Creemos que Dios puede hacerse presente en lo cotidiano, en un regalo, en una palabra, en un rosario que nos acompaña en la oración o en ese pequeño detalle que nos recuerda que no estamos solos.
+                        Por eso creamos cada producto con mucho amor y dedicación, buscando que detrás de cada uno haya algo más que un objeto: un pedacito de fe, una invitación a rezar y una forma de acercarnos un poquito mas a Él.
+                    </p>
+                </div>
             </div>
-        </div>
-        <p class="closing-quote" data-animate="scale-in">Gracias por ser parte de este sueño y por elegir que, juntos, pequeños detalles puedan acercar corazones a Dios.</p>
+        </section>
+
+        <section class="about-section" data-section-bg="#F9F6EE" data-animate="scale-in">
+            <p class="closing-quote">Gracias por ser parte de este sueño y por elegir que, juntos, pequeños detalles puedan acercar corazones a Dios.</p>
+        </section>
     </main>
 
     <script>
@@ -53,5 +68,10 @@
         });
     </script>
     <script src="animations.js"></script>
+    <a href="https://www.instagram.com/corardei?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" target="_blank" class="instagram-float" aria-label="Visítanos en Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.181a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/>
+        </svg>
+    </a>
 </body>
 </html>

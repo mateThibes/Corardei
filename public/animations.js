@@ -23,6 +23,30 @@
   animatedElements.forEach((el) => observer.observe(el));
 })();
 
+/* ----- 1b. SCROLL-DRIVEN SECTION BACKGROUND COLORS ----- */
+(function initSectionBackgrounds() {
+  const sections = document.querySelectorAll('[data-section-bg]');
+  if (!sections.length) return;
+
+  const bgObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.backgroundColor = entry.target.dataset.sectionBg;
+          entry.target.classList.add('section-bg-active');
+        } else {
+          // Fade back to default when scrolling out
+          entry.target.style.backgroundColor = '';
+          entry.target.classList.remove('section-bg-active');
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+
+  sections.forEach((el) => bgObserver.observe(el));
+})();
+
 /* ----- 2. CAROUSEL ENGINE ----- */
 class Carousel {
   /**
@@ -38,11 +62,11 @@ class Carousel {
     this.autoplay = opts.autoplay ?? true;
     this.interval = opts.interval || 5000;
 
-    this.track = container.querySelector('.carousel-track');
-    this.slides = Array.from(container.querySelectorAll('.carousel-slide'));
-    this.prevBtn = container.querySelector('.carousel-prev');
-    this.nextBtn = container.querySelector('.carousel-next');
-    this.dotsContainer = container.querySelector('.carousel-dots');
+    this.track = Array.from(container.querySelectorAll('.carousel-track')).find(el => el.closest('.carousel') === container) || container.querySelector('.carousel-track');
+    this.slides = this.track ? Array.from(this.track.children).filter(el => el.classList.contains('carousel-slide')) : [];
+    this.prevBtn = Array.from(container.querySelectorAll('.carousel-prev')).find(el => el.closest('.carousel') === container) || container.querySelector('.carousel-prev');
+    this.nextBtn = Array.from(container.querySelectorAll('.carousel-next')).find(el => el.closest('.carousel') === container) || container.querySelector('.carousel-next');
+    this.dotsContainer = Array.from(container.querySelectorAll('.carousel-dots')).find(el => el.closest('.carousel') === container) || container.querySelector('.carousel-dots');
 
     this.current = 0;
     this.total = this.slides.length;
@@ -161,6 +185,7 @@ class Carousel {
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.carousel').forEach((el) => {
     const mode = el.dataset.carouselMode || 'slide';
-    new Carousel(el, { mode });
+    const autoplay = el.dataset.autoplay !== 'false';
+    new Carousel(el, { mode, autoplay });
   });
 });

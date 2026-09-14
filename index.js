@@ -24,6 +24,11 @@ app.get('/productos', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'productos.html'));
 });
 
+// 2b. Ruta "Detalle de Producto" (dinámica por slug)
+app.get('/producto/:slug', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'producto.html'));
+});
+
 // 3. Ruta "Acerca de nosotros"
 app.get('/acerca-de', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'acerca-de.html'));

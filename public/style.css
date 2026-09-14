@@ -1598,7 +1598,7 @@ h1 {
 
     .product-detail-layout {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .gallery-section {
@@ -1616,6 +1616,11 @@ h1 {
         gap: 0.5rem;
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .gallery-thumbnails::-webkit-scrollbar {
+        display: none;
     }
 
     .gallery-thumb {
@@ -1629,24 +1634,49 @@ h1 {
 
     .gallery-main {
         cursor: default;
-        aspect-ratio: 4 / 3;
+        aspect-ratio: 1 / 1;
+        border-radius: 8px;
     }
 
     .product-detail-name {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
     }
 
     .product-detail-price {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .product-info-section {
         padding: 0;
     }
 
+    .product-detail-promo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .product-detail-variant-list {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .product-detail-variant-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .variant-btn {
+        flex-shrink: 0;
+        min-width: 75px;
+    }
+
     .cta-instagram {
         width: 100%;
         justify-content: center;
+        padding: 1.2rem;
     }
 }
 

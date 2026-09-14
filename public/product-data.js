@@ -72,9 +72,9 @@ const PRODUCTS = {
     name: 'Rosario Virgen de Luján',
     category: 'Rosarios',
     price: '$10.000',
-    priceNote: 'cuentas celestes',
+    priceNote: 'con cuentas celestes',
     priceAlt: '$12.000 con cuentas marmoladas',
-    promo: '¡Llevando dos pagá $17.000!',
+    promo: '¡Llevando dos de $10.000 pagá $17.000!',
     description: 'Rosario artesanal dedicado a la Virgen de Luján, patrona de Argentina. Cuentas en tonos celestes y marmolados que evocan devoción mariana.',
     shortDesc: 'Con cuentas perladas celestes y marmoladas.',
     images: [

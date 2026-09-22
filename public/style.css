@@ -1242,21 +1242,13 @@ h1 {
 /* Breadcrumb */
 .breadcrumb {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.9rem;
     color: var(--text-muted);
     margin-bottom: 2rem;
     flex-wrap: wrap;
-    /* Override inherited nav styles */
-    background-color: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    position: static;
-    box-shadow: none;
-    border-bottom: none;
-    padding: 0;
-    justify-content: flex-start;
 }
 
 .breadcrumb a {
@@ -1287,6 +1279,7 @@ h1 {
 .gallery-section {
     position: sticky;
     top: 110px;
+    z-index: 10; /* Ensure zoom panel renders above product-info-section */
 }
 
 .gallery-container {
@@ -1370,14 +1363,14 @@ h1 {
     position: absolute;
     top: 0;
     left: calc(100% + 1rem);
-    width: 420px;
-    height: 420px;
+    width: 48vw; /* Cover the entire info column regardless of screen size */
+    height: 100%;
     border-radius: 10px;
     border: 1px solid var(--border-color);
     background-color: #fff;
     background-repeat: no-repeat;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-    z-index: 100;
+    z-index: 9999;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -1392,6 +1385,8 @@ h1 {
 .product-info-section {
     padding: 0 1rem;
     text-align: left;
+    position: relative;
+    z-index: 1; /* Below gallery-section z-index:10 so zoom panel renders on top */
 }
 
 .product-detail-name {

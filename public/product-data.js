@@ -32,7 +32,8 @@ const PRODUCTS = {
       'Crucifijo metálico resistente',
       'Cuentas de alta calidad',
       'Largo estándar (~50 cm)',
-      'Hecho a mano con dedicación',
+      'Cierre con gancho mosquetón',
+      'Hecho a mano con dedicación'
     ],
   },
 
@@ -64,7 +65,8 @@ const PRODUCTS = {
       'Crucifijo metálico resistente',
       'Cuentas de alta calidad',
       'Largo estándar (~50 cm)',
-      'Hecho a mano con dedicación',
+      'Cierre con gancho mosquetón',
+      'Hecho a mano con dedicación'
     ],
   },
 
@@ -91,7 +93,8 @@ const PRODUCTS = {
       'Crucifijo metálico resistente',
       'Cuentas de alta calidad',
       'Largo estándar (~50 cm)',
-      'Hecho a mano con dedicación',
+      'Cierre con gancho mosquetón',
+      'Hecho a mano con dedicación'
     ],
   },
 
@@ -116,7 +119,8 @@ const PRODUCTS = {
       'Elegí el tipo y color de cuentas',
       'Elegí la medalla central',
       'Combinaciones únicas y personales',
-      'Hecho a mano con dedicación',
+      'Cierre con gancho mosquetón',
+      'Hecho a mano con dedicación'
     ],
   },
 

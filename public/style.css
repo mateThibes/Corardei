@@ -155,8 +155,9 @@ main {
         max-width: 100%;
         text-align: center;
         justify-content: center;
-        font-size: 1rem;
-        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        margin-top: 0.3rem;
+        padding: 0 0.5rem;
     }
 
     /* --- Desactivar snap scroll en móviles (el contenido es más largo que la pantalla) --- */
@@ -1593,7 +1594,7 @@ h1 {
 
 @media (max-width: 900px) {
     .product-detail-main {
-        padding: 90px 1rem 3rem;
+        padding: 170px 1.2rem 3rem;
     }
 
     .product-detail-layout {
@@ -1648,7 +1649,7 @@ h1 {
     }
 
     .product-info-section {
-        padding: 0;
+        padding: 0 0.3rem;
     }
 
     .product-detail-promo {
@@ -1677,6 +1678,136 @@ h1 {
         width: 100%;
         justify-content: center;
         padding: 1.2rem;
+    }
+}
+
+/* ---- Extra small phones (≤480px) ---- */
+@media (max-width: 480px) {
+    /* Nav needs to be more compact on small phones */
+    nav {
+        padding: 0.6rem 0.8rem;
+        gap: 0.35rem;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+        gap: 0.4rem;
+    }
+
+    .logo-img {
+        height: 32px;
+    }
+
+    .nav-links {
+        gap: 0.3rem;
+    }
+
+    .nav-links a {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .nav-quote {
+        font-size: 0.78rem;
+        margin-top: 0.2rem;
+        line-height: 1.3;
+    }
+
+    /* Product detail — give enough top padding to clear the shorter nav */
+    .product-detail-main {
+        padding: 160px 1rem 2rem;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Product info */
+    .product-detail-name {
+        font-size: 1.5rem;
+    }
+
+    .product-detail-price {
+        font-size: 1.8rem;
+    }
+
+    .product-detail-description {
+        font-size: 1rem;
+    }
+
+    .product-detail-variants-title,
+    .product-detail-specs-title {
+        font-size: 1rem;
+    }
+
+    .product-detail-specs-list li {
+        font-size: 0.95rem;
+    }
+
+    /* Variant buttons scroll area */
+    .product-detail-variant-list {
+        gap: 0.5rem;
+        padding-left: 0.2rem;
+    }
+
+    .variant-btn {
+        min-width: 68px;
+        font-size: 0.75rem;
+        padding: 0.4rem;
+    }
+
+    .variant-thumb {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* CTA */
+    .cta-instagram {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    /* Products page sections */
+    .product-section,
+    .about-section {
+        padding: 2rem 0.8rem 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* Cards within carousel — prevent clipping */
+    .carousel-slide {
+        padding: 0.5rem;
+    }
+
+    .carousel-slide .card {
+        max-width: 100%;
+        padding: 1.2rem 1rem;
+    }
+
+    /* Instagram float */
+    .instagram-float {
+        width: 44px;
+        height: 44px;
+        bottom: 14px;
+        right: 14px;
+    }
+
+    .instagram-float svg {
+        width: 22px;
+        height: 22px;
     }
 }
 

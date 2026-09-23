@@ -28,6 +28,7 @@ body {
     background-color: var(--bg-hueso);
     color: var(--texto-oscuro);
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     overflow-x: hidden; /* Prevenir scroll horizontal en móviles */
@@ -350,6 +351,7 @@ html.snap-scroll-page {
     scroll-snap-align: start;
     scroll-snap-stop: always;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -417,7 +419,7 @@ html.snap-scroll-page {
     .scroll-down-arrow {
         width: 36px;
         height: 36px;
-        bottom: 1.5rem;
+        bottom: 3.5rem;
     }
 
     .scroll-down-arrow svg {
@@ -456,6 +458,7 @@ html.snap-scroll-page {
 .about-section {
     width: 100%;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;

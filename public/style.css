@@ -362,6 +362,68 @@ html.snap-scroll-page {
     padding: 0 5%;
     text-align: center;
     background-color: var(--bg-hueso);
+    position: relative;
+}
+
+/* =============================================
+   SCROLL-DOWN ARROW (Hero → Rosario)
+   ============================================= */
+.scroll-down-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--bordo-principal);
+    background: rgba(56, 3, 14, 0.06);
+    border: 1.5px solid rgba(56, 3, 14, 0.15);
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 2.5rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    animation: scrollArrowBounce 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.scroll-down-arrow svg {
+    width: 22px;
+    height: 22px;
+}
+
+.scroll-down-arrow:hover {
+    background: rgba(56, 3, 14, 0.12);
+    border-color: rgba(163, 44, 69, 0.4);
+    box-shadow: 0 0 16px rgba(163, 44, 69, 0.2);
+    animation-play-state: paused;
+    transform: translateY(2px);
+}
+
+@keyframes scrollArrowBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+/* Mobile adjustments for scroll arrow */
+@media (max-width: 768px) {
+    .scroll-down-arrow {
+        width: 36px;
+        height: 36px;
+        bottom: 1.5rem;
+    }
+
+    .scroll-down-arrow svg {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 /* =============================================
@@ -402,6 +464,7 @@ html.snap-scroll-page {
     text-align: center;
     background-color: var(--bg-hueso);
     box-sizing: border-box;
+    position: relative;
 }
 
 .product-section[data-section-bg],

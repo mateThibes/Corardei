@@ -1904,3 +1904,221 @@ h1 {
     color: var(--bordo-principal);
     gap: 0.6rem;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ROSARIO INTERACTIVO — SVG Beads & Interactive States
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Contenedor del SVG ── */
+.rosary-svg {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* ── Cuenta genérica (círculo) ── */
+.rosary-bead {
+    cursor: pointer;
+    transition: fill 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                stroke 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                stroke-width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Propagar cursor y evitar selección en todos los hijos de las cuentas */
+.rosary-bead,
+.rosary-bead * {
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.rosary-bead circle,
+.rosary-bead polygon,
+.rosary-bead path {
+    transition: fill 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                stroke 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                stroke-width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Cuentas chicas — estado base */
+circle.rosary-bead {
+    fill: #e8d48b;
+    stroke: #c9a94e;
+    stroke-width: 1;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+}
+
+/* Cuentas grandes — estado base */
+circle.rosary-bead.rosary-bead--large {
+    fill: #c9a94e;
+    stroke: #a8852e;
+    stroke-width: 1.5;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+}
+
+/* ── Cruz ── */
+.rosary-bead--cross .rosary-cross-path {
+    fill: #c9a94e;
+    stroke: #a8852e;
+    stroke-width: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+
+/* ── Medalla (colgante) ── */
+.rosary-medal-outer {
+    fill: #c9a94e;
+    stroke: #a8852e;
+    stroke-width: 1.5;
+}
+
+.rosary-medal-inner {
+    fill: #e8d48b;
+    stroke: none;
+}
+
+/* ── Transición (diamante entre decenas) ── */
+.rosary-transition-diamond {
+    fill: #d4b85c;
+    stroke: #a8852e;
+    stroke-width: 0.8;
+    opacity: 0.7;
+}
+
+/* ── Medalla central (cierre) — Invisible hasta el paso final ── */
+/* Especificidad alta para sobreescribir circle.rosary-bead */
+circle.rosary-bead.rosary-bead--center-medal {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 0;
+    opacity: 0;
+    pointer-events: none;
+    filter: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ESTADOS INTERACTIVOS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Hover (todas las cuentas) ── */
+circle.rosary-bead:hover,
+.rosary-bead:hover .rosary-cross-path,
+.rosary-bead:hover .rosary-medal-outer,
+.rosary-bead:hover .rosary-transition-diamond {
+    filter: drop-shadow(0 0 6px rgba(163, 44, 69, 0.5)) brightness(1.1);
+}
+
+/* ── ACTIVA — La cuenta del paso actual ── */
+circle.rosary-bead.active {
+    fill: var(--bordo-claro, #a32c45);
+    stroke: var(--bordo-oscuro, #b83851);
+    stroke-width: 2.5;
+    filter: drop-shadow(0 0 8px rgba(163, 44, 69, 0.6));
+    animation: rosary-pulse 1.8s ease-in-out infinite;
+}
+
+circle.rosary-bead.rosary-bead--large.active {
+    fill: var(--bordo-principal, #38030e);
+    stroke: var(--bordo-claro, #a32c45);
+    stroke-width: 3;
+    filter: drop-shadow(0 0 12px rgba(163, 44, 69, 0.7));
+}
+
+.rosary-bead--cross.active .rosary-cross-path {
+    fill: var(--bordo-claro, #a32c45);
+    stroke: var(--bordo-oscuro, #b83851);
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 10px rgba(163, 44, 69, 0.7));
+    animation: rosary-pulse 1.8s ease-in-out infinite;
+}
+
+.rosary-bead--medal.active .rosary-medal-outer {
+    fill: var(--bordo-claro, #a32c45);
+    stroke: var(--bordo-oscuro, #b83851);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 10px rgba(163, 44, 69, 0.6));
+    animation: rosary-pulse 1.8s ease-in-out infinite;
+}
+
+.rosary-bead--medal.active .rosary-medal-inner {
+    fill: #f0d0d8;
+}
+
+.rosary-bead--transition.active .rosary-transition-diamond {
+    fill: var(--bordo-claro, #a32c45);
+    stroke: var(--bordo-oscuro, #b83851);
+    stroke-width: 1.5;
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(163, 44, 69, 0.6));
+    animation: rosary-pulse 1.8s ease-in-out infinite;
+}
+
+circle.rosary-bead.rosary-bead--center-medal.active {
+    fill: var(--bordo-claro, #a32c45);
+    stroke: var(--bordo-oscuro, #b83851);
+    stroke-width: 2.5;
+    opacity: 1;
+    pointer-events: auto;
+    filter: drop-shadow(0 0 14px rgba(163, 44, 69, 0.8));
+    animation: rosary-pulse 1.8s ease-in-out infinite;
+}
+
+/* ── COMPLETADA — Cuentas ya rezadas ── */
+circle.rosary-bead.completed {
+    fill: #8a6d3b;
+    stroke: #6b5530;
+    stroke-width: 1;
+    opacity: 0.55;
+}
+
+circle.rosary-bead.rosary-bead--large.completed {
+    fill: #7a5f2e;
+    stroke: #5c4722;
+    opacity: 0.55;
+}
+
+.rosary-bead--cross.completed .rosary-cross-path {
+    fill: #8a6d3b;
+    stroke: #6b5530;
+    opacity: 0.55;
+}
+
+.rosary-bead--medal.completed .rosary-medal-outer {
+    fill: #8a6d3b;
+    stroke: #6b5530;
+    opacity: 0.55;
+}
+
+.rosary-bead--medal.completed .rosary-medal-inner {
+    fill: #a88a5a;
+    opacity: 0.55;
+}
+
+.rosary-bead--transition.completed .rosary-transition-diamond {
+    fill: #8a6d3b;
+    stroke: #6b5530;
+    opacity: 0.4;
+}
+
+/* ── Animación de pulso suave para la cuenta activa ── */
+@keyframes rosary-pulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 6px rgba(163, 44, 69, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 14px rgba(163, 44, 69, 0.85));
+    }
+}
+
+/* ── Focus: eliminar cualquier outline del navegador ── */
+.rosary-bead:focus,
+.rosary-bead:focus-visible {
+    outline: none;
+}

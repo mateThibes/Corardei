@@ -13,7 +13,9 @@ const PRAYERS = {
   aveMaria: "Dios te salve, María, llena eres de gracia; el Señor es contigo. Bendita tú eres entre todas las mujeres, y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros, pecadores, ahora y en la hora de nuestra muerte. Amén.",
   gloria: "Gloria al Padre y al Hijo y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.",
   fatima: "Oh Jesús mío, perdona nuestros pecados, líbranos del fuego del infierno, lleva al cielo a todas las almas, especialmente a las más necesitadas de tu misericordia.",
-  salve: "Dios te salve, Reina y Madre de misericordia, vida, dulzura y esperanza nuestra; Dios te salve. A ti llamamos los desterrados hijos de Eva; a ti suspiramos, gimiendo y llorando en este valle de lágrimas. Ea, pues, Señora, abogada nuestra, vuelve a nosotros esos tus ojos misericordiosos; y después de este destierro, muéstranos a Jesús, fruto bendito de tu vientre. ¡Oh, clementísima, oh piadosa, oh dulce Virgen María! Ruega por nosotros, Santa Madre de Dios, para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo. Amén."
+  salve: "Dios te salve, Reina y Madre de misericordia, vida, dulzura y esperanza nuestra; Dios te salve. A ti llamamos los desterrados hijos de Eva; a ti suspiramos, gimiendo y llorando en este valle de lágrimas. Ea, pues, Señora, abogada nuestra, vuelve a nosotros esos tus ojos misericordiosos; y después de este destierro, muéstranos a Jesús, fruto bendito de tu vientre. ¡Oh, clementísima, oh piadosa, oh dulce Virgen María! Ruega por nosotros, Santa Madre de Dios, para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo. Amén.",
+  actoContricion: "Señor mío Jesucristo, Dios y Hombre verdadero, me pesa de todo corazón de haber pecado, porque con el pecado ofendí a un Dios tan bueno y tan grande como Vos; antes quiero morir que pecar, y propongo firmemente, ayudado de vuestra divina gracia, no pecar más en adelante y evitar las ocasiones próximas de pecado. Amén.",
+  intencionPapa: "Por las intenciones del Santo Padre: un Padrenuestro, tres Avemarías y un Gloria."
 };
 
 const MYSTERIES_BY_TYPE = [
@@ -64,9 +66,9 @@ const MYSTERIES_BY_TYPE = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────
-// Virtudes para las 3 Avemarías iniciales
+// (Las 3 Avemarías del colgante se usan en el cierre, por las intenciones
+// del Santo Padre — no se necesita array de virtudes en esta variante.)
 // ─────────────────────────────────────────────────────────────────────────
-const INITIAL_AVE_VIRTUES = ["la Fe", "la Esperanza", "la Caridad"];
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CLASE PRINCIPAL
@@ -140,55 +142,19 @@ class RosaryApp {
     let id = 0;
 
     // ═══════════════════════════════════
-    // FASE A — Colgante / Inicio (lineal)
+    // FASE A — Cruz / Inicio
     // ═══════════════════════════════════
+    // Entrada directa: Señal de la Cruz + Acto de Contrición.
+    // El colgante NO se reza al inicio; se transita directamente al anillo.
 
-    // Paso 0 | Cruz: Señal de la Cruz + Credo
+    // Paso 0 | Cruz: Señal de la Cruz + Acto de Contrición
     this.steps.push({
       id: id,
       beadId: "cross",
       type: "cross",
-      title: "Señal de la Cruz y Credo",
+      title: "Señal de la Cruz y Acto de Contrición",
       instruction: "Sostén el crucifijo del rosario",
-      prayerText: `${PRAYERS.signumCrucis}\n\n${PRAYERS.credo}`,
-      groupLabel: "Inicio"
-    });
-    id++;
-
-    // Paso 1 | Cuenta grande: Padrenuestro
-    this.steps.push({
-      id: id,
-      beadId: "pendant-lg",
-      type: "large_bead",
-      title: "Padrenuestro",
-      instruction: "Primera cuenta grande",
-      prayerText: PRAYERS.padreNuestro,
-      groupLabel: "Inicio"
-    });
-    id++;
-
-    // Pasos 2–4 | Tres cuentas chicas: Avemarías (Fe, Esperanza, Caridad)
-    for (let i = 0; i < 3; i++) {
-      this.steps.push({
-        id: id,
-        beadId: `pendant-sm-${i + 1}`,
-        type: "small_bead",
-        title: `Avemaría (${i + 1}/3)`,
-        instruction: `Por ${INITIAL_AVE_VIRTUES[i]}`,
-        prayerText: PRAYERS.aveMaria,
-        groupLabel: "Inicio"
-      });
-      id++;
-    }
-
-    // Paso 5 | Medalla/Transición: Gloria + Jaculatoria de Fátima
-    this.steps.push({
-      id: id,
-      beadId: "pendant-medal",
-      type: "medal",
-      title: "Gloria y Jaculatoria de Fátima",
-      instruction: "En la medalla, antes de iniciar los misterios",
-      prayerText: `${PRAYERS.gloria}\n\n${PRAYERS.fatima}`,
+      prayerText: `${PRAYERS.signumCrucis}\n\n${PRAYERS.actoContricion}`,
       groupLabel: "Inicio"
     });
     id++;
@@ -196,6 +162,7 @@ class RosaryApp {
     // ═══════════════════════════════════
     // FASE B — Las 5 Decenas (anillo)
     // ═══════════════════════════════════
+    // Se entra directamente al anillo tras la cruz.
 
     for (let m = 0; m < 5; m++) {
       const mysteryNum = m + 1;
@@ -230,39 +197,96 @@ class RosaryApp {
         id++;
       }
 
-      // Sub-paso 12: Transición — Gloria + Jaculatoria de Fátima
+      // Sub-paso 12: Transición — Gloria (sin Jaculatoria de Fátima)
       this.steps.push({
         id: id,
         beadId: `decade-${mysteryNum}-transition`,
         type: "transition",
         mysteryNumber: mysteryNum,
-        title: "Gloria y Jaculatoria de Fátima",
-        instruction: `Cierre de la ${decadeLabel.toLowerCase()}`,
-        prayerText: `${PRAYERS.gloria}\n\n${PRAYERS.fatima}`,
+        title: "Gloria",
+        instruction: `Cierre del ${decadeLabel.toLowerCase()}`,
+        prayerText: PRAYERS.gloria,
         groupLabel: decadeLabel
       });
       id++;
     }
 
     // ═══════════════════════════════════
-    // FASE C — Cierre
+    // FASE C — Cierre (colgante descendente)
     // ═══════════════════════════════════
+    // Tras la 5ª decena, el recorrido regresa a la unión/medalla central
+    // y baja por el colgante hacia la cruz.
 
+    // C.1 | Nudo / Medalla central (Unión) — Ofrecimiento
     this.steps.push({
       id: id,
       beadId: "center-medal",
       type: "center_medal",
-      title: "Salve y Oraciones Finales",
-      instruction: "Sostén la medalla central",
-      prayerText: `${PRAYERS.salve}\n\n${PRAYERS.signumCrucis}`,
+      title: "Por las intenciones del Santo Padre",
+      instruction: "Nudo / Medalla central — Ofrecimiento",
+      prayerText: PRAYERS.intencionPapa,
+      groupLabel: "Cierre"
+    });
+    id++;
+
+    // C.2 | Cuenta grande del colgante — Padrenuestro
+    this.steps.push({
+      id: id,
+      beadId: "pendant-lg",
+      type: "large_bead",
+      title: "Padrenuestro",
+      instruction: "Cuenta grande del colgante",
+      prayerText: PRAYERS.padreNuestro,
+      groupLabel: "Cierre"
+    });
+    id++;
+
+    // C.3 | 3 Cuentas chicas del colgante — Avemarías
+    const aveOrdinals = ["1.ª", "2.ª", "3.ª"];
+    for (let i = 0; i < 3; i++) {
+      this.steps.push({
+        id: id,
+        beadId: `pendant-sm-${i + 1}`,
+        type: "small_bead",
+        title: `${aveOrdinals[i]} Avemaría`,
+        instruction: `Cuenta chica ${i + 1} del colgante`,
+        prayerText: PRAYERS.aveMaria,
+        groupLabel: "Cierre"
+      });
+      id++;
+    }
+
+    // C.4 | Cruz / Remate final — Gloria + Salve + Señal de la Cruz
+    this.steps.push({
+      id: id,
+      beadId: "cross",
+      type: "cross",
+      title: "Gloria, Salve y Señal de la Cruz final",
+      instruction: "Sostén el crucifijo para cerrar el rosario",
+      prayerText: `${PRAYERS.gloria}\n\n${PRAYERS.salve}\n\n${PRAYERS.signumCrucis}`,
       groupLabel: "Cierre"
     });
     id++;
 
     // ── Construir lookup beadId → stepIndex para clicks SVG ──
+    // Nota: el beadId "cross" aparece en DOS pasos (inicio y cierre).
+    // Almacenamos un array de índices para cada beadId; el handler de click
+    // elegirá el más cercano al paso actual.
+    this._beadToSteps = {};
+    this.steps.forEach((step, idx) => {
+      if (!this._beadToSteps[step.beadId]) {
+        this._beadToSteps[step.beadId] = [];
+      }
+      this._beadToSteps[step.beadId].push(idx);
+    });
+
+    // Lookup simple (primer paso con ese beadId) para compatibilidad
+    // con updateActiveBeadUI
     this._beadToStep = {};
     this.steps.forEach((step, idx) => {
-      this._beadToStep[step.beadId] = idx;
+      if (!(step.beadId in this._beadToStep)) {
+        this._beadToStep[step.beadId] = idx;
+      }
     });
   }
 
@@ -622,11 +646,24 @@ class RosaryApp {
   // ─────────────────────────────────────────────────────────────────────
 
   _onBeadClick(beadId) {
-    const stepIndex = this._beadToStep[beadId];
-    if (stepIndex !== undefined) {
-      this.currentStepIndex = stepIndex;
-      this.render();
+    const candidates = this._beadToSteps[beadId];
+    if (!candidates || candidates.length === 0) return;
+
+    // Si hay un solo paso mapeado, ir directamente.
+    // Si hay varios (ej. "cross" aparece al inicio y al cierre),
+    // elegir el más cercano al paso actual.
+    let best = candidates[0];
+    let bestDist = Math.abs(best - this.currentStepIndex);
+    for (let i = 1; i < candidates.length; i++) {
+      const dist = Math.abs(candidates[i] - this.currentStepIndex);
+      if (dist < bestDist) {
+        best = candidates[i];
+        bestDist = dist;
+      }
     }
+
+    this.currentStepIndex = best;
+    this.render();
   }
 
   goToStep(index) {
@@ -643,15 +680,20 @@ class RosaryApp {
   updateActiveBeadUI() {
     const currentBeadId = this.steps[this.currentStepIndex].beadId;
 
+    // Recopilar todos los beadIds que ya se visitaron (índice < actual)
+    const visitedBeadIds = new Set();
+    for (let i = 0; i < this.currentStepIndex; i++) {
+      visitedBeadIds.add(this.steps[i].beadId);
+    }
+
     this.svgEl.querySelectorAll("[data-bead-id]").forEach(el => {
       const elBeadId = el.dataset.beadId;
-      const elStepIndex = this._beadToStep[elBeadId];
 
       el.classList.remove("active", "completed");
 
       if (elBeadId === currentBeadId) {
         el.classList.add("active");
-      } else if (elStepIndex !== undefined && elStepIndex < this.currentStepIndex) {
+      } else if (visitedBeadIds.has(elBeadId)) {
         el.classList.add("completed");
       }
     });
